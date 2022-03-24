@@ -19,6 +19,8 @@ function AddPost() {
           type='text'
           name='title'
           placeholder='Title'
+          required
+          minLength='2'
           value={newPost.title}
           onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
         />
@@ -26,6 +28,8 @@ function AddPost() {
         <input
           type='text'
           placeholder='Enter text...'
+          required
+          maxLength='300'
           style={{ height: "100px" }}
           name='text'
           value={newPost.text}
