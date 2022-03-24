@@ -35,6 +35,15 @@ function AddPost() {
         <button className='btn btn-light m-3' type='submit'>
           Submit
         </button>
+        <button
+          className='btn btn-light m-3'
+          type='button'
+          onClick={() => {
+            setNewPost({ title: "", text: "" });
+          }}
+        >
+          Reset
+        </button>
       </form>
     </div>
   );
