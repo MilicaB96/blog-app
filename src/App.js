@@ -32,6 +32,9 @@ function App() {
           <Route exact path='/post/:id'>
             <SinglePost />
           </Route>
+          <Route path='/edit/:id'>
+            <AddPost />
+          </Route>
           <Route path='/add'>
             <AddPost />
           </Route>

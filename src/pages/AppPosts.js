@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import PostsService from "../Services/PostsService";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 function AppPosts() {
   const [posts, setPosts] = useState([]);
+  const history = useHistory();
   async function fetchPosts() {
     const data = await PostsService.getAll();
     setPosts(data);
@@ -23,6 +24,13 @@ function AppPosts() {
             >
               View Post
             </Link>
+            <button
+              type='button'
+              className='btn btn-outline-dark ms-3 mb-1'
+              onClick={() => history.push(`/edit/${post.id}`)}
+            >
+              Edit
+            </button>
           </li>
         ))}
       </ul>

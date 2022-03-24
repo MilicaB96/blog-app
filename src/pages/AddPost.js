@@ -1,19 +1,33 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom/";
+import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom/";
 import PostsService from "../Services/PostsService";
-
 function AddPost() {
+  const { id } = useParams();
   const [newPost, setNewPost] = useState({ title: "", text: "" });
   let history = useHistory();
+  async function fetchPost() {
+    const { id: _, ...data } = await PostsService.get(id);
+    setNewPost({ ...data });
+  }
+  useEffect(() => {
+    if (id) {
+      fetchPost();
+    }
+  }, [id]);
+
   // create post
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await PostsService.add(newPost);
+    if (id) {
+      await PostsService.edit(id, newPost);
+    } else {
+      await PostsService.add(newPost);
+    }
     history.push("/posts");
   };
   return (
     <div className='p-3'>
-      <h1>Write a post</h1>
+      <h1>{id ? "Edit this post" : "Write a post"}</h1>
       <form onSubmit={handleSubmit}>
         <input
           type='text'
