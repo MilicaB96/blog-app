@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import AppPosts from "./pages/AppPosts";
+import SinglePost from "./components/SinglePost";
 
 function App() {
   return (
@@ -22,8 +23,11 @@ function App() {
           </ul>
         </nav>
         <Switch>
+          <Route to='/post/:id'>
+            <SinglePost />
+          </Route>
           <Route exact path='/' render={() => <Redirect to='/posts' />} />
-          <Route path='/posts'>
+          <Route exact path='/posts'>
             <AppPosts />
           </Route>
         </Switch>
