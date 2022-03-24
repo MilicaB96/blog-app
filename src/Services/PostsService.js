@@ -25,5 +25,14 @@ class PostsService {
     }
     return [];
   }
+  async add(post) {
+    try {
+      const { data } = await this.client.post("api/posts", post);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+    return [];
+  }
 }
 export default new PostsService();

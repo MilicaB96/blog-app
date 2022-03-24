@@ -8,6 +8,7 @@ import {
 import "./App.css";
 import AppPosts from "./pages/AppPosts";
 import SinglePost from "./components/SinglePost";
+import AddPost from "./pages/AddPost";
 
 function App() {
   return (
@@ -15,16 +16,24 @@ function App() {
       <div className='App'>
         <nav className='navbar navbar-expand bg-light p-3'>
           <ul className='navbar-nav'>
-            <li className='nav-item'>
+            <li className='nav-item pe-3'>
               <Link className='text-decoration-none link-dark' to='/posts'>
                 Posts
+              </Link>
+            </li>
+            <li className='nav-item pe-3'>
+              <Link className='text-decoration-none link-dark' to='/add'>
+                Add Post
               </Link>
             </li>
           </ul>
         </nav>
         <Switch>
-          <Route to='/post/:id'>
+          <Route exact path='/post/:id'>
             <SinglePost />
+          </Route>
+          <Route path='/add'>
+            <AddPost />
           </Route>
           <Route exact path='/' render={() => <Redirect to='/posts' />} />
           <Route exact path='/posts'>
