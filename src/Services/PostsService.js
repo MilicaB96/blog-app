@@ -18,7 +18,9 @@ class PostsService {
   }
   async get(id) {
     try {
-      const { data } = await this.client.get(`api/posts/${id}`);
+      const { data } = await this.client.get(
+        `api/posts/${id}?filter={"include":["comments"]}`
+      );
       return data;
     } catch (error) {
       console.log(error);
@@ -46,6 +48,18 @@ class PostsService {
   async delete(id) {
     try {
       const { data } = await this.client.delete(`api/posts/${id}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+    return [];
+  }
+  async addComment(comment, postId) {
+    try {
+      const { data } = await this.client.post(
+        `api/posts/${postId}/comments`,
+        comment
+      );
       return data;
     } catch (error) {
       console.log(error);
