@@ -13,6 +13,10 @@ function SinglePost() {
     setPost(data);
     setDate(data.createdAt);
   }
+  // handle Comment
+  const handleComments = (newComment) => {
+    setPost({ ...post, comments: [...post.comments, newComment] });
+  };
   useEffect(() => {
     fetchPost();
   }, []);
@@ -33,7 +37,7 @@ function SinglePost() {
             </li>
           ))}
       </ul>
-      <AddComment postId={id} />
+      <AddComment addCommentCallback={handleComments} postId={id} />
     </div>
   );
 }
