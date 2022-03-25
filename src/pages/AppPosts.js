@@ -25,7 +25,12 @@ function AppPosts() {
       <ul className='list-group-flush'>
         {posts.map((post) => (
           <li key={post.id} className='list-group-item'>
-            <h1 className='d-inline-block me-3'>{post.title}</h1>
+            <h1 className='d-inline-block me-3'>
+              {post.title}
+              {Boolean(post.comments.length) && (
+                <span>({post.comments.length})</span>
+              )}
+            </h1>
             <Link
               className='text-decoration-none link-dark border border-dark rounded p-2'
               to={`post/${post.id}`}
